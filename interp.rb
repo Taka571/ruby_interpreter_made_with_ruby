@@ -56,10 +56,12 @@ def evaluate(tree)
     p(evaluate(tree[2]))
   when "stmts"
     i = 1
+    return_value = nil
     while tree[i] != nil
-      evaluate(tree[i])
+      return_value = evaluate(tree[i])
       i = i + 1
     end
+    return_value
   else
     raise "invalid input"
   end
