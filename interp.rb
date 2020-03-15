@@ -5,6 +5,7 @@ def evaluate(tree, env)
   when "lit"
     tree[1]
   when "+"
+    env[:plus_count] += 1
     evaluate(tree[1], env) + evaluate(tree[2], env)
   when "-"
     evaluate(tree[1], env) - evaluate(tree[2], env)
@@ -29,6 +30,7 @@ def evaluate(tree, env)
   when "!="
     evaluate(tree[1], env) != evaluate(tree[2], env)
   when "func_call"
+    p(env[:plus_count])
     p(evaluate(tree[2], env))
   when "stmts"
     i = 1
@@ -53,4 +55,5 @@ str = minruby_load()
 tree = minruby_parse(str)
 # ③ 計算の木を実行（計算）する
 env = {}
+env[:plus_count] = 0
 answer = evaluate(tree, env)
