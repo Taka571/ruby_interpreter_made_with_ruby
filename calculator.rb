@@ -52,16 +52,16 @@ def evaluate(tree)
     left  = evaluate(tree[1])
     right = evaluate(tree[2])
     left != right
+  when "func_call"
+    p(evaluate(tree[2]))
   else
     raise "invalid input"
   end
 end
 
 # ① 計算式の文字列を読み込む
-str = gets
+str = minruby_load()
 # ② 計算式の文字列を計算の木に変換する
 tree = minruby_parse(str)
 # ③ 計算の木を実行（計算）する
 answer = evaluate(tree)
-# ④ 計算結果を出力する
-p(answer)
