@@ -64,6 +64,8 @@ def evaluate(tree, env)
     return_value
   when "var_assign"
     env[tree[1]] = evaluate(tree[2], env)
+  when "var_ref"
+    env[tree[1]]
   else
     raise "invalid input"
   end
