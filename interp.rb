@@ -54,6 +54,12 @@ def evaluate(tree)
     left != right
   when "func_call"
     p(evaluate(tree[2]))
+  when "stmts"
+    i = 1
+    while tree[i] != nil
+      evaluate(tree[i])
+      i = i + 1
+    end
   else
     raise "invalid input"
   end
