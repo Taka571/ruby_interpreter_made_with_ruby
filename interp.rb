@@ -5,53 +5,29 @@ def evaluate(tree, env)
   when "lit"
     tree[1]
   when "+"
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left + right
+    evaluate(tree[1], env) + evaluate(tree[2], env)
   when "-"
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left - right
+    evaluate(tree[1], env) - evaluate(tree[2], env)
   when "*"
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left * right
+    evaluate(tree[1], env) * evaluate(tree[2], env)
   when "**"
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left ** right
+    evaluate(tree[1], env) ** evaluate(tree[2], env)
   when "%"
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left % right  
+    evaluate(tree[1], env) % evaluate(tree[2], env)  
   when "/"
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left / right
+    evaluate(tree[1], env) / evaluate(tree[2], env)
   when ">"
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left > right
+    evaluate(tree[1], env) > evaluate(tree[2], env)
   when "<"
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left < right
+    evaluate(tree[1], env) < evaluate(tree[2], env)
   when ">="
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left >= right
+    evaluate(tree[1], env) >= evaluate(tree[2], env)
   when "<="
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left <= right
+    evaluate(tree[1], env) <= evaluate(tree[2], env)
   when "=="
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left == right
+    evaluate(tree[1], env) == evaluate(tree[2], env)
   when "!="
-    left  = evaluate(tree[1], env)
-    right = evaluate(tree[2], env)
-    left != right
+    evaluate(tree[1], env) != evaluate(tree[2], env)
   when "func_call"
     p(evaluate(tree[2], env))
   when "stmts"
