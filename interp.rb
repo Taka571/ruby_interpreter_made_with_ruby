@@ -83,7 +83,10 @@ str = minruby_load()
 # ② 計算式の文字列を計算の木に変換する
 tree = minruby_parse(str)
 # ③ 計算の木を実行（計算）する
-genv = { "p" => ["builtin", "p"] }
+genv = {
+  "p" => ["builtin", "p"],
+  "raise" => ["builtin", "raise"],
+}
 lenv = {}
 lenv[:plus_count] = 0
 answer = evaluate(tree, genv, lenv)
