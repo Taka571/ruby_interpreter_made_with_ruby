@@ -29,9 +29,28 @@ def evaluate(tree, genv, lenv)
     evaluate(tree[1], genv, lenv) == evaluate(tree[2], genv, lenv)
   when "!="
     evaluate(tree[1], genv, lenv) != evaluate(tree[2], genv, lenv)
+  when "func_def"
+    genv[tree[1]] = ["user_defined", tree[2], tree[3]]
   when "func_call"
     p(lenv[:plus_count])
-    p(evaluate(tree[2], genv, lenv))
+    args = []
+    i = 0
+    while tree[i + 2]
+      args[i] = evaluate(tree[i + 2], genv, lenv)
+      i = i + 1
+    end
+    mhd = genv[tree[1]]
+    if mhd[0] == "builtin"
+      minruby_call(mhd[1], args)
+    else
+      params = mhd[1]
+      i = 0
+      while params[i]
+        lenv[params[i]] = args[i]
+        i = i + 1
+      end
+      evaluate(mhd[2], genv, lenv)
+    end
   when "stmts"
     i = 1
     return_value = nil
